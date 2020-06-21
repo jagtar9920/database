@@ -1,0 +1,62 @@
+select * from hr.employees ;
+
+select * from hr.department  ;
+
+////////////////////////dipaly salary, lastname, hire date of id 101**********************************************
+declare 
+
+v_lname varchar2(25); 
+v_salary varchar2(25);
+v_date varchar2(25);
+begin 
+select LAST_NAME, SALARY, HIRE_DATE into v_lname, v_salary,v_date
+ 
+from hr.employees 
+where employee_id = 101; 
+dbms_output.put_line('The last name of employee with ID 101 is '  || v_lname|| ', the salary is ' || v_salary ||' and the hire date is ' || v_date); 
+ 
+end; 
+
+select HIRE_DATE from hr.employees
+where DEPARTMENT_ID = 60;
+
+
+/////////////////////////////////////////////// not run dispaly recent hire date*********************************
+declare 
+
+v_lname varchar2(25);
+v_salary varchar2(25);
+v_date varchar2(25);
+begin 
+select max(HIRE_DATE)  , LAST_NAME, salary  
+ 
+from hr.employees 
+where department_id = 60
+group by hire_date;
+
+end;
+
+
+///////////////////// sum of all salary by department*************************************
+
+select department_id,sum(salary)
+from hr.employees
+group by department_id
+order by department_id;
+
+
+
+***************inster depart id and name*****************************************************************************
+
+INSERT INTO hr.department (DEPARTMENT_ID,DEPARTMENT_NAME)
+VALUES (290, ’Information Technology')
+
+INSERT INTO hr.department (DEPARTMENT_ID,DEPARTMENT_NAME)
+VALUES (300, ‘Procurement’)
+
+
+***********************************show max and min salary ************************
+
+select max(salary)  , min(salary) 
+ 
+from hr.employees ;
