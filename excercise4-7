@@ -1,6 +1,6 @@
 select * from hr.employees ;
 
-select * from hr.department  ;
+select * from hr. DEPARTMENTS  ;
 
 ////////////////////////dipaly salary, lastname, hire date of id 101**********************************************
 declare 
@@ -48,11 +48,11 @@ order by department_id;
 
 ***************inster depart id and name*****************************************************************************
 
-INSERT INTO hr.department (DEPARTMENT_ID,DEPARTMENT_NAME)
-VALUES (290, ’Information Technology')
+insert into hr.departments (DEPARTMENT_ID,DEPARTMENT_NAME)
+values (290, 'Information Technology');
 
-INSERT INTO hr.department (DEPARTMENT_ID,DEPARTMENT_NAME)
-VALUES (300, ‘Procurement’)
+INSERT INTO hr.departments (DEPARTMENT_ID,DEPARTMENT_NAME)
+VALUES (300, 'Procurement');
 
 
 ***********************************show max and min salary ************************
