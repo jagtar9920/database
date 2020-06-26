@@ -22,27 +22,21 @@ where DEPARTMENT_ID = 60;
 
 
 /////////////////////////////////////////////// not run dispaly recent hire date*********************************
-declare 
+DECLARE
+v_lname VARCHAR2(25);
+v_salary NUMBER;
 
-v_lname varchar2(25);
-v_salary varchar2(25);
-v_date varchar2(25);
-begin 
-select max(HIRE_DATE)  , LAST_NAME, salary  
- 
-from hr.employees 
-where department_id = 60
-group by hire_date;
+BEGIN
 
-end;
+Select  LAST_NAME, salary  INTO v_lname, v_salary
+FROM HR.EMPLOYEES 
+WHERE   DEPARTMENT_ID = 60 
+AND HIRE_DATE = (select max(HIRE_DATE) from HR.EMPLOYEES  
+   where DEPARTMENT_ID = 60);
 
+dbms_output.put_line('The employee with latest hire date for department id 60 is '|| v_lname || 'and his salary is '||v_salary);
+END;
 
-///////////////////// sum of all salary by department*************************************
-
-select department_id,sum(salary)
-from hr.employees
-group by department_id
-order by department_id;
 
 
 
@@ -68,6 +62,16 @@ end;
 
 ***********************************show max and min salary ************************
 
-select max(salary)  , min(salary) 
- 
-from hr.employees ;
+DECLARE
+min_salary NUMBER;
+max_salary NUMBER;
+
+BEGIN
+
+select  max(salary), min(salary) into min_salary , max_salary
+from HR.EMPLOYEES  
+   where DEPARTMENT_ID = 60;
+
+dbms_output.put_line('The maximum and minimum salary of employees of department 60 are  '||min_salary|| ' and ' ||max_salary);
+END;
+
