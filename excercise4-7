@@ -48,12 +48,23 @@ order by department_id;
 
 ***************inster depart id and name*****************************************************************************
 
-insert into hr.departments (DEPARTMENT_ID,DEPARTMENT_NAME)
-values (290, 'Information Technology');
+create table department as (select*from hr.departments)
 
-INSERT INTO hr.departments (DEPARTMENT_ID,DEPARTMENT_NAME)
-VALUES (300, 'Procurement');
+insert into department (department_id, department_name) values (290, 'information technology');
+insert into department (department_id, department_name) values (300, 'procurement');
 
+declare 
+dep_name varchar2(25); 
+dep_id number(4); 
+ 
+begin 
+select DEPARTMENT_NAME, DEPARTMENT_ID into dep_name, dep_id 
+ 
+from DEPARTMENT 
+where department_id = 300; 
+dbms_output.put_line('The department name and id are ' || dep_name ||' and ' || dep_id); 
+ 
+end;
 
 ***********************************show max and min salary ************************
 
